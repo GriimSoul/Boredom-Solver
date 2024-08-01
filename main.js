@@ -54,10 +54,10 @@ let tryThis = Object.keys(topicsAndContent);
         let part1 = ["Invite", "Read", "Go"];
     // Optional Person Array (modifiable)
         let optional = ["Sami", "Shiku", "Brandon", "Selena", "Aiyena"];
-    //B element Arrays (modifiable, may take some thinking)
-        let part2 = [["to play something!", "out on a date~", "to watch something!", "to hangout"],
-                    ["Moby Dick", "the Bakemonogatari manga", "Vast Error, you gotta catch up"],
-                    ["out on a walk", "buy something cool", "look for a job"]];
+    //B element Arrays (modifiable, each subarray corresponds to a part1 array value, and should be ordered accordingly.)
+        let part2 = [["to play something!", "out on a date~", "to watch something!", "to hangout!"],
+                    ["Moby Dick, there's so much left.", "the Bakemonogatari manga.", "Vast Error, you gotta catch up."],
+                    ["out on a walk.", "buy something cool!", "look for a job."]];
 
 // Declare function that generates topic content of a single message
 
@@ -75,7 +75,7 @@ function aMessage() {
             return `${tryThis[random2]} ${connect[connector(connect)]}`;
         }
         case "draw": {
-            const connect = [`a heavenly image of ${topicsAndContent[tryThis[random2]][random3]}.`, `${topicsAndContent[tryThis[random2]][random3]} with a facial expression you like.`, `${topicsAndContent[tryThis[random2]][random3]} dresses like another character.`, `a portrait of ${topicsAndContent[tryThis[random2]][random3]}.`];
+            const connect = [`a heavenly image of ${topicsAndContent[tryThis[random2]][random3]}.`, `${topicsAndContent[tryThis[random2]][random3]} with a facial expression you like.`, `${topicsAndContent[tryThis[random2]][random3]} dressed like another character.`, `a portrait of ${topicsAndContent[tryThis[random2]][random3]}.`];
             return `${tryThis[random2]} ${connect[connector(connect)]}`;
         }
         case "play": {
@@ -99,3 +99,40 @@ function aMessage() {
         }
     } 
 };
+
+//create function that delivers the last message
+function lastMessage() {
+    let random1 = Math.floor(Math.random()*part1.length);
+    let random2 = Math.floor(Math.random()*optional.length);
+    let random3 = Math.floor(Math.random()*part2[random1].length);
+    switch (part1[random1]) {
+        case "Invite": {
+            return `${part1[random1]} ${optional[random2]} ${part2[random1][random3]}`;
+        }
+        case "Read": {
+            return `${part1[random1]} ${part2[random1][random3]}`;
+        }
+        case "Go": {
+            return `${part1[random1]} ${part2[random1][random3]}`
+        }
+        default: {
+            return "ERROR: something with the randoms is not reading well, probably " + part2[random1][random3];
+        }
+    }
+};
+
+//combine all previous functions into one that returns the complete message
+function fullMessage() {
+    let random1 = Math.floor(Math.random()*firstComment.length);
+    return `${firstComment[random1]}
+Try to ${aMessage()}
+Or maybe ${aMessage()}
+How about you ${aMessage()}
+What else hmm...
+${lastMessage()}
+If you don't like ANY of these, then you're out of luck.`;
+}
+
+console.log(fullMessage());
+
+// console.log(JSON.stringify(topicsAndContent, null, 2)); Used to debug arrays in VSCode
