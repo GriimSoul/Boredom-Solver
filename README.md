@@ -4,6 +4,7 @@
 
 Have you ever been bored, or been caught overwhelmed by the possibilities of "What to do"?
 Well, this string will narrow down those possibilities for you, and give you 4 randomly selected suggestions of what to do from a vast variety of possibilities.
+**The suggestions that the script outputs are logged onto the console, so in order to read them you'll need to check in a debugger.**
 
 There's also the possibility of expanding these to accomodate for your own hobbies and responsabilites.
 
